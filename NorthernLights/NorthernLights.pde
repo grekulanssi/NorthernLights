@@ -2,8 +2,15 @@
 ArrayList<Sisalto> sisallot = new ArrayList<Sisalto>();
 
 void setup() {
+  
+  size(800, 450);
+  background(color(0,0,0)); 
+  
+  
   sisallot.add(new Revontulet());
-  sisallot.add(new Poro());
+  for(int i = 0; i < 10; i++) {
+    sisallot.add(new Poro(250,800));
+  }
   
   for (int i=0; i<sisallot.size(); i++) {
      sisallot.get(i).setup(); 

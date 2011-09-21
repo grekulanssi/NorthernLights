@@ -18,10 +18,6 @@ class Revontulet implements Sisalto {
   float[] yvalues;          // Using an array to store height values for the wave (not entirely necessary)
   
   void setup() {
-    size(800, 600);
-    background(color(0,0,0)); 
-  
-  
     for (int i = 0; i < maxwaves; i++) {
       amplitude[i] = random(3,10);
       float period = random(400,900); // How many pixels before the wave repeats

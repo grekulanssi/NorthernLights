@@ -30,15 +30,9 @@ Poro(int ylaraja, int leveys) {
 }
 
 void setup() {
-  size(800,450);
-  background(250);
-  smooth();
-  for(int i = 0; i < 10; i++) {
-    Poro poro = new Poro(250,800);
-  }
 }
 
-pvoid draw() {
+void draw() {
   //ei tehdä mitään
 }  
 
