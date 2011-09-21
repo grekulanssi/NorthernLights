@@ -1,6 +1,6 @@
 public class KuusiLuokka implements Sisalto{
 
-public ArrayList kuuset;
+ArrayList kuuset;
 
   void setup() {}
 

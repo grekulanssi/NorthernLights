@@ -15,11 +15,15 @@ class Lapintausta implements Sisalto{
     piirretaankoKuusikko = true; // Artin lisäämä
     kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
     kuusiLuokka.kuuset = new ArrayList(); // Artin lisäämä
+   int ykorkeus = int(random(400,450));
   }
   void draw(){
-    kuu();
-    vuoret1();
-    vuoret2();
+      background(5,5,50); //piirretään tausta uudestaan kokoajan
+      kuu();
+      vuoret1();
+      vuoret2();
+
+    
   }
   void kuu(){
     ellipseMode(CENTER);
@@ -44,7 +48,7 @@ class Lapintausta implements Sisalto{
     }
   }
   void vuoret2(){
-        //etummainen vuorijono
+    //etummainen vuorijono
     float[] taulukko = new float[800]; // Artin lisäämä    
     stroke(255);
     kulma3 = 0;
@@ -63,13 +67,17 @@ class Lapintausta implements Sisalto{
       if(piirretaankoKuuset && j < 800) {
         taulukko[j] = (py2+py3)/2;
         kuusiLuokka.lisaaListaan(taulukko[j]);
-      }    
+      }
+      
     }
     
     piirretaankoKuuset = false;
     
       if(piirretaankoKuusikko) {
         kuusiLuokka.luoKuusikko();
-      } /* Artin lisayksia*/
+      }
+      
+    piirretaankoKuusikko = false; 
+     /* Artin lisayksia*/
   }
 }
