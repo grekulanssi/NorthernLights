@@ -9,7 +9,7 @@ class Lapintausta implements Sisalto{
   boolean onkoPiirretty; // [TESTAILUA]
   
   void setup(){
-    background(5,5,50);
+    background(3,3,30);
     smooth();
     //noLoop(); [TESTAILUA]
     onkoPiirretty = true;
