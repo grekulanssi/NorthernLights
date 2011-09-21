@@ -2,7 +2,7 @@
 //background colorin mukaan sijainnin asettaminen.
 
 */
-
+/*
 void setup() {
   size(800,450);
   background(250);
@@ -10,7 +10,7 @@ void setup() {
   for(int i = 0; i < 10; i++) {
     Poro poro = new Poro(250,800);
   }
-}
+}*/
 
 
 public class Poro implements Sisalto {
