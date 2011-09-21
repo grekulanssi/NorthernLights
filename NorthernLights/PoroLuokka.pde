@@ -2,15 +2,7 @@
 //background colorin mukaan sijainnin asettaminen.
 
 */
-/*
-void setup() {
-  size(800,450);
-  background(250);
-  smooth();
-  for(int i = 0; i < 10; i++) {
-    Poro poro = new Poro(250,800);
-  }
-}*/
+
 
 
 public class Poro implements Sisalto {
@@ -37,9 +29,24 @@ Poro(int ylaraja, int leveys) {
   piirraPoro();
 }
 
+void setup() {
+  size(800,450);
+  background(250);
+  smooth();
+  for(int i = 0; i < 10; i++) {
+    Poro poro = new Poro(250,800);
+  }
+}
+
+pvoid draw() {
+  //ei tehdä mitään
+}  
+
 int annaY(int maksimi) {
   return int(random(maksimi, RUUDUN_KORKEUS));
 }
+
+
 
 void piirraPoro() {
   stroke(100);
