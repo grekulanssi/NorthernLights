@@ -6,11 +6,13 @@ class Lapintausta implements Sisalto{
   boolean piirretaankoKuuset; // Artin lisäämä
   boolean piirretaankoKuusikko; // Artin lisäämä
   KuusiLuokka kuusiLuokka; // Artin lisäämä
+  boolean onkoPiirretty; // [TESTAILUA]
   
   void setup(){
     background(5,5,50);
     smooth();
-    noLoop();
+    //noLoop(); [TESTAILUA]
+    onkoPiirretty = true;
     piirretaankoKuuset = true; // Artin lisäämä
     piirretaankoKuusikko = true; // Artin lisäämä
     kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
@@ -18,14 +20,15 @@ class Lapintausta implements Sisalto{
    int ykorkeus = int(random(400,450));
   }
   void draw(){
-      background(5,5,50); //piirretään tausta uudestaan kokoajan
+      //background(5,5,50); //piirretään tausta uudestaan kokoajan [TESTAILUA]
       kuu();
       vuoret1();
       vuoret2();
 
-    
+      onkoPiirretty = false;  //  [TESTAILUA]
   }
   void kuu(){
+    if(onkoPiirretty) {
     ellipseMode(CENTER);
     fill(190,175,120);
     //fill(255,236,139);
@@ -33,8 +36,10 @@ class Lapintausta implements Sisalto{
     float x  = random(50,750);
     float y = random(50,300);
     ellipse(x,y,50,50);
+    }
   }
   void vuoret1(){
+    if(onkoPiirretty){
     //taaemmaisen vuorijonon piirtäminen
     stroke(210,200,200);
     kulma = 0;
@@ -46,8 +51,10 @@ class Lapintausta implements Sisalto{
     }
     kulma += PI/200;
     }
+    }
   }
   void vuoret2(){
+    if(onkoPiirretty){
     //etummainen vuorijono
     float[] taulukko = new float[800]; // Artin lisäämä    
     stroke(255);
@@ -79,5 +86,6 @@ class Lapintausta implements Sisalto{
       
     piirretaankoKuusikko = false; 
      /* Artin lisayksia*/
+  }
   }
 }
