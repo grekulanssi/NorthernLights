@@ -9,6 +9,8 @@ void setup() {
   
   sisallot.add(new Lapintausta());
   
+  sisallot.add(new KuusiLuokka());
+  
   sisallot.add(new Revontulet());
   for(int i = 0; i < 10; i++) {
   	sisallot.add(new Poro(250,800));
