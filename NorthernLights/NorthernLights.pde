@@ -7,11 +7,13 @@ void setup() {
   background(color(0,0,0)); 
   
   
+  sisallot.add(new Lapintausta());
+  
   sisallot.add(new Revontulet());
   for(int i = 0; i < 10; i++) {
   	sisallot.add(new Poro(250,800));
   }
-  sisallot.add(new Lapintausta());
+  
   
   for (int i=0; i<sisallot.size(); i++) {
      sisallot.get(i).setup(); 

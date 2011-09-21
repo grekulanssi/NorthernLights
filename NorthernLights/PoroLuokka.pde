@@ -26,14 +26,14 @@ Poro(int ylaraja, int leveys) {
   
   y = annaY(ylaraja);
   x = int(random(leveys));
-  piirraPoro();
+  //piirraPoro();
 }
 
 void setup() {
 }
 
 void draw() {
-  //ei tehdä mitään
+  piirraPoro();
 }  
 
 int annaY(int maksimi) {
@@ -43,6 +43,7 @@ int annaY(int maksimi) {
 
 
 void piirraPoro() {
+  println("piirretään poro " + x + " ja " + y);
   stroke(100);
   strokeWeight(2);
   fill(200);

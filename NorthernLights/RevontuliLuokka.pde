@@ -30,14 +30,7 @@ class Revontulet implements Sisalto {
   
   
   void draw() {
-    
-    background(color(0,0,0));  
-  
-    
-    //Maa
-    fill(127,127,127);
-    rect(0,300,800,300);
-    
+     
     calcWave();
     renderWave();
     

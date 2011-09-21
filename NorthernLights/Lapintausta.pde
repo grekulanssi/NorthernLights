@@ -3,7 +3,6 @@ class Lapintausta implements Sisalto{
   float kulma,kulma2,kulma3;
    int ykorkeus = int(random(400,450));
   void setup(){
-    size(800,450);
     background(5,5,50);
     smooth();
     noLoop();
@@ -21,7 +20,6 @@ class Lapintausta implements Sisalto{
     float x  = random(50,750);
     float y = random(50,300);
     ellipse(x,y,50,50);
-    smooth();
   }
   void vuoret1(){
     //taaemmaisen vuorijonon piirtäminen
