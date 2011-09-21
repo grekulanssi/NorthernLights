@@ -4,6 +4,7 @@ ArrayList<Sisalto> sisallot = new ArrayList<Sisalto>();
 void setup() {
   sisallot.add(new Revontulet());
   sisallot.add(new Poro());
+  sisallot.add(new Lapintausta());
   
   for (int i=0; i<sisallot.size(); i++) {
      sisallot.get(i).setup(); 
