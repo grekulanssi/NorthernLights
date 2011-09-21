@@ -2,15 +2,17 @@ class Lapintausta implements Sisalto{
   float py2,py, py3;
   float kulma,kulma2,kulma3;
    int ykorkeus = int(random(400,450));
+   
   void setup(){
     background(5,5,50);
-    smooth();
-    noLoop();
   }
   void draw(){
-    kuu();
-    vuoret1();
-    vuoret2();
+      background(5,5,50); //piirretään tausta uudestaan kokoajan
+      kuu();
+      vuoret1();
+      vuoret2();
+
+    
   }
   void kuu(){
     ellipseMode(CENTER);

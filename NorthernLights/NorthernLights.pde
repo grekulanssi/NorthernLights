@@ -5,7 +5,7 @@ void setup() {
   
   size(800, 450);
   background(color(0,0,0)); 
-  
+  smooth();
   
   sisallot.add(new Lapintausta());
   
