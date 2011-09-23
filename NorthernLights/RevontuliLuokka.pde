@@ -110,9 +110,32 @@ class Revontulet implements Sisalto {
       noStroke();   
       int luku = x % vaakaGradient;
       int ero = Math.abs(vaakaGradient/2-luku);
-      color ala = color(47, 181+(ero), 0);
-      color yla = color(5, 5,50);
-      setGradient(aloitusX+x, (int)yvalues[x], 1, 150, yla, ala, Y_AXIS);
+      int feidiSivusta = 200;
+      
+      color tulenvari;
+      if (x <= feidiSivusta) {
+        float valmius = 1-(float)x/feidiSivusta;
+        println(valmius);
+        tulenvari = color(47-42*(valmius), 181+ero-(181+ero-5)*(valmius), 50*(valmius)); //tulenvarireuna vaihtelee
+      }
+      else if (x >= revontulenleveys-feidiSivusta) {
+        float valmius = (float)(x-revontulenleveys+feidiSivusta)/feidiSivusta;
+        println(valmius);
+        tulenvari = color(47-42*(valmius), 181+ero-(181+ero-5)*(valmius), 50*(valmius)); //tulenvarireuna vaihtelee
+      }
+      else {
+        tulenvari = color(47, 181+(ero), 0); //tulenvarireuna vaihtelee
+      }
+      
+      color tausta = color(5, 5,50); //yläreuna
+      
+      setGradient(aloitusX+x, 
+                 (int)yvalues[x], 
+                 1, 
+                 150, 
+                 tausta, 
+                 tulenvari, 
+                 Y_AXIS);
     }
   }
 
