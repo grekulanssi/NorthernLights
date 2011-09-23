@@ -8,6 +8,7 @@ class Revontulet implements Sisalto {
   
   //revontulikertoimia
   int revontulenleveys = 500;
+  int aloitusX = 200;
   int xspacing = 4;   // How far apart should each horizontal location be spaced
   int maxwaves = 4;   // total # of waves to add together
   int vaakaGradient = 100;
@@ -111,7 +112,7 @@ class Revontulet implements Sisalto {
       int ero = Math.abs(vaakaGradient/2-luku);
       color ala = color(47, 181+(ero), 0);
       color yla = color(5, 5,50);
-      setGradient(x+200, (int)yvalues[x], 1, 150, yla, ala, Y_AXIS);
+      setGradient(aloitusX+x, (int)yvalues[x], 1, 150, yla, ala, Y_AXIS);
     }
   }
 
