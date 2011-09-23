@@ -1,4 +1,11 @@
 
+/**
+
+Revontuliluokka
+
+Käytetty apuna Processingin Gradient ja AddictiveWave exampleja.
+
+*/
 
 class Revontulet implements Sisalto {
   
@@ -7,18 +14,28 @@ class Revontulet implements Sisalto {
   int X_AXIS = 2;
   
   //revontulikertoimia
-  int revontulenleveys = 500;
-  int aloitusX = 200;
-  int xspacing = 4;   // How far apart should each horizontal location be spaced
-  int maxwaves = 4;   // total # of waves to add together
+  int revontulenleveys;
+  int aloitusX;
+  int aloitusY;
+  int xspacing;   // How far apart should each horizontal location be spaced
+  int maxwaves = 3;   // total # of waves to add together
   int vaakaGradient = 100;
+  float vinouskerroin;
   
   float theta = 0.0;
   float[] amplitude = new float[maxwaves];   // Height of wave
   float[] dx = new float[maxwaves];
   float[] yvalues;          // Using an array to store height values for the wave (not entirely necessary)
   
+  
   void setup() {
+    
+    revontulenleveys = (int)random(500,700);
+    aloitusX = (int)random(-100,250);
+    vinouskerroin = random(-0.2, 0.2);
+    aloitusY = (int)-(vinouskerroin*400);
+    xspacing = (int)random(2,4.8);
+    
     for (int i = 0; i < maxwaves; i++) {
       amplitude[i] = random(3,10);
       float period = random(400,900); // How many pixels before the wave repeats
@@ -35,6 +52,8 @@ class Revontulet implements Sisalto {
     calcWave();
     renderWave();
     
+
+    
   }
   
   
@@ -44,40 +63,24 @@ class Revontulet implements Sisalto {
     float deltaG = green(c2)-green(c1);
     float deltaB = blue(c2)-blue(c1);
   
-    // choose axis
-    if(axis == Y_AXIS){
-      /*nested for loops set pixels
-       in a basic table structure */
-      // column
-      for (int i=x; i<=(x+w); i++){
-        // row
-        for (int j = y; j<=(y+h); j++){
-          
-          color c = color(
-          (red(c1)+(j-y)*(deltaR/h)),
-          (green(c1)+(j-y)*(deltaG/h)),
-          (blue(c1)+(j-y)*(deltaB/h))
-            );
-          set(i, j, c);
-  
-        }
+    /*nested for loops set pixels
+     in a basic table structure */
+    // column
+    for (int i=x; i<=(x+w); i++){
+      // row
+      for (int j = y; j<=(y+h); j++){
+        
+        color c = color(
+        (red(c1)+(j-y)*(deltaR/h)),
+        (green(c1)+(j-y)*(deltaG/h)),
+        (blue(c1)+(j-y)*(deltaB/h))
+          );
+       set(i, j, c);
+       //fill(c);
+       //point(i,j);
       }  
     }  
-    else if(axis == X_AXIS){
-      // column 
-      for (int i=y; i<=(y+h); i++){
-        // row
-        for (int j = x; j<=(x+w); j++){
-          color c = color(
-          (red(c1)+(j-x)*(deltaR/h)),
-          (green(c1)+(j-x)*(deltaG/h)),
-          (blue(c1)+(j-x)*(deltaB/h))
-            );
-          int thisColour = color(c, 10);
-          set(j, i, thisColour);
-        }
-      }  
-    }
+    
   }
   
   
@@ -113,29 +116,27 @@ class Revontulet implements Sisalto {
       int feidiSivusta = 200;
       
       color tulenvari;
+      
+      /* Revontulen reunat feidaa */
       if (x <= feidiSivusta) {
         float valmius = 1-(float)x/feidiSivusta;
-        println(valmius);
+        //println(valmius);
         tulenvari = color(47-42*(valmius), 181+ero-(181+ero-5)*(valmius), 50*(valmius)); //tulenvarireuna vaihtelee
       }
       else if (x >= revontulenleveys-feidiSivusta) {
         float valmius = (float)(x-revontulenleveys+feidiSivusta)/feidiSivusta;
-        println(valmius);
+        //println(valmius);
         tulenvari = color(47-42*(valmius), 181+ero-(181+ero-5)*(valmius), 50*(valmius)); //tulenvarireuna vaihtelee
       }
+      /* Keskikohta on tasainen */
       else {
         tulenvari = color(47, 181+(ero), 0); //tulenvarireuna vaihtelee
       }
       
       color tausta = color(5, 5,50); //yläreuna
       
-      setGradient(aloitusX+x, 
-                 (int)yvalues[x], 
-                 1, 
-                 150, 
-                 tausta, 
-                 tulenvari, 
-                 Y_AXIS);
+      setGradient(aloitusX+x, aloitusY+(int)(yvalues[x]+vinouskerroin*x),
+                 1, 150, tausta, tulenvari, Y_AXIS);
     }
   }
 
