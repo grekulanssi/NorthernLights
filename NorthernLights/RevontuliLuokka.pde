@@ -34,11 +34,6 @@ class Revontulet implements Sisalto {
     calcWave();
     renderWave();
     
-    fill(255,255,255, 100);
-    rect(250,40,5,5);
-    rect(150,80,5,5);
-    rect(50,10,5,5);
-    rect(200,100,5,5);
   }
   
   
@@ -115,7 +110,7 @@ class Revontulet implements Sisalto {
       int luku = x % vaakaGradient;
       int ero = Math.abs(vaakaGradient/2-luku);
       color ala = color(47, 181+(ero), 0);
-      color yla = color(0, 0,0);
+      color yla = color(5, 5,50);
       setGradient(x+200, (int)yvalues[x], 1, 150, yla, ala, Y_AXIS);
     }
   }

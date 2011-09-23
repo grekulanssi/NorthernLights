@@ -21,7 +21,7 @@ Poro(int ylaraja, int leveys) {
     petteri = false;
   }
   
-  println("Petteri: " + petteri);
+  //println("Petteri: " + petteri);
 
   
   y = annaY(ylaraja);
@@ -43,7 +43,7 @@ int annaY(int maksimi) {
 
 
 void piirraPoro() {
-  println("piirretään poro " + x + " ja " + y);
+  //println("piirretään poro " + x + " ja " + y);
   stroke(100);
   strokeWeight(2);
   fill(200);

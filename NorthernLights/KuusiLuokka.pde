@@ -48,7 +48,7 @@ ArrayList kuuset;
   
   void luoKuusikko() {
     
-    for(int k = kuuset.size(); k>=0; k--) {
+    for(int k = kuuset.size()-1; k>=0; k--) {
      
      float tehdaankoKuusi = random(0,100);
     
