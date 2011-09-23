@@ -58,26 +58,28 @@ class Revontulet implements Sisalto {
   
   
   void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ){
-    // calculate differences between color components 
-    float deltaR = red(c2)-red(c1);
-    float deltaG = green(c2)-green(c1);
-    float deltaB = blue(c2)-blue(c1);
+
+   
+    //c2 on revontulen väri
   
-    /*nested for loops set pixels
-     in a basic table structure */
     // column
     for (int i=x; i<=(x+w); i++){
       // row
       for (int j = y; j<=(y+h); j++){
         
+        int alfa = (int)(((float)(j-y)/h)*255);
+        
+        if (alpha(c2) < alfa) {
+          alfa = (int)(alpha(c2));
+        }
+        
         color c = color(
-        (red(c1)+(j-y)*(deltaR/h)),
-        (green(c1)+(j-y)*(deltaG/h)),
-        (blue(c1)+(j-y)*(deltaB/h))
-          );
-       set(i, j, c);
-       //fill(c);
-       //point(i,j);
+        (red(c2)),
+        (green(c2)),
+        (blue(c1)), alfa);
+        
+       stroke(c);
+       point(i,j);
       }  
     }  
     
@@ -115,22 +117,20 @@ class Revontulet implements Sisalto {
       int ero = Math.abs(vaakaGradient/2-luku);
       int feidiSivusta = 200;
       
-      color tulenvari;
+      color tulenvari = color(47, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
       
       /* Revontulen reunat feidaa */
       if (x <= feidiSivusta) {
-        float valmius = 1-(float)x/feidiSivusta;
+        float valmius = (float)x/feidiSivusta;
         //println(valmius);
-        tulenvari = color(47-42*(valmius), 181+ero-(181+ero-5)*(valmius), 50*(valmius)); //tulenvarireuna vaihtelee
-      }
+        tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
+
+    }
+      
       else if (x >= revontulenleveys-feidiSivusta) {
-        float valmius = (float)(x-revontulenleveys+feidiSivusta)/feidiSivusta;
-        //println(valmius);
-        tulenvari = color(47-42*(valmius), 181+ero-(181+ero-5)*(valmius), 50*(valmius)); //tulenvarireuna vaihtelee
-      }
-      /* Keskikohta on tasainen */
-      else {
-        tulenvari = color(47, 181+(ero), 0); //tulenvarireuna vaihtelee
+        float valmius = 1-((float)(x-revontulenleveys+feidiSivusta))/feidiSivusta;
+        println(valmius);
+        tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
       }
       
       color tausta = color(5, 5,50); //yläreuna

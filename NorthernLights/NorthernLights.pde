@@ -3,7 +3,7 @@ ArrayList<Sisalto> sisallot = new ArrayList<Sisalto>();
 
 void setup() {
   
-  size(800, 450); //P2D nopeuttaa -Tomi
+  size(800, 450, P2D); //P2D nopeuttaa -Tomi
   frameRate(30);
   background(color(0,0,0)); 
   smooth();
