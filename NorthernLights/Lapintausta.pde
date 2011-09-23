@@ -13,7 +13,6 @@ class Lapintausta implements Sisalto{
   
   void setup(){
     background(3,3,30);
-    smooth();
 
     piirretaankoKuuset = true; // Artin lisäämä
     piirretaankoKuusikko = true; // Artin lisäämä
