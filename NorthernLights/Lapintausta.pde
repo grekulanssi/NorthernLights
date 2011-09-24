@@ -2,8 +2,6 @@ class Lapintausta implements Sisalto{
 
 
   int ykorkeus = int(random(400,450));
-  boolean piirretaankoKuuset; // Artin lisäämä
-  boolean piirretaankoKuusikko; // Artin lisäämä
   KuusiLuokka kuusiLuokka; // Artin lisäämä
   
   //Tomi tästä eteenpäin
@@ -12,12 +10,14 @@ class Lapintausta implements Sisalto{
   ArrayList<Float> etuvuorenPisteet = new ArrayList<Float>(); //etummaisen vuoren y-koordinaatit
   
   void setup(){
+    
     background(3,3,30);
-
-    piirretaankoKuuset = true; // Artin lisäämä
-    piirretaankoKuusikko = true; // Artin lisäämä
     kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
+    kuusiLuokka.ensimmainenKerta = true;
     kuusiLuokka.kuuset = new ArrayList(); // Artin lisäämä
+    kuusiLuokka.sijainnitX = new ArrayList<Float>();
+    kuusiLuokka.sijainnitY = new ArrayList<Float>();
+    kuusiLuokka.koot = new ArrayList<Float>();
     int ykorkeus = int(random(400,450));
    
   }
@@ -109,7 +109,11 @@ class Lapintausta implements Sisalto{
       line(i, etuvuorenPisteet.get(i), i, 450); 
     }
     
-    kuusiLuokka.luoKuusikko();
+    if(kuusiLuokka.ensimmainenKerta) {    
+     kuusiLuokka.luoKuusikko();
+    } else {
+      kuusiLuokka.piirraSamatKuuset();
+    }
    
   }
   
