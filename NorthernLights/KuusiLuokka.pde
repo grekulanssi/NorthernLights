@@ -1,4 +1,4 @@
-  public class KuusiLuokka implements Sisalto{
+  public class KuusiLuokka implements Sisalto {
   
   ArrayList kuuset;
   ArrayList kannat;
@@ -6,6 +6,8 @@
   ArrayList sijainnitY;
   ArrayList koot;
   boolean ensimmainenKerta;
+  color kantojenVari = color(92,36,6);
+  color latvojenVari = color(23,84,25);
   
     void setup() {}
   
@@ -34,11 +36,11 @@
        } else {
          koko = 10;
        }
-   
-     fill(200,100,50);
+
+     fill(kantojenVari);
      rect(sijaintiX,sijaintiY,koko,koko/2);   
      
-     fill(0,180,0);
+     fill(latvojenVari);
      triangle(sijaintiX-koko,sijaintiY,sijaintiX+(koko*2),sijaintiY,sijaintiX+(koko/2),sijaintiY-(koko+(koko/2)));
      
      triangle(sijaintiX-(koko/2),sijaintiY-(koko/(9/5)),sijaintiX+(koko/2)+koko,sijaintiY-(koko/(9/5)),sijaintiX+(koko/2),sijaintiY-(koko*2));
@@ -64,7 +66,7 @@
        
        float tehdaankoKuusi = random(0,100);
       
-        if(tehdaankoKuusi <= 2) {
+        if(tehdaankoKuusi <= 1.7) {
          luoKuusi((float)k,(Float)kuuset.get(k));
         } 
       }
@@ -83,9 +85,9 @@
       
       for(int a = koot.size()-1; a>=0; a--) {
              
-        fill(200,100,50);
+        fill(kantojenVari);
         rect((Float)sijainnitX.get(a),(Float)sijainnitY.get(a),(Float)koot.get(a),(Float)koot.get(a)/2);
-        fill(0,180,0);
+        fill(latvojenVari);
         triangle((Float)sijainnitX.get(a)-(Float)koot.get(a),(Float)sijainnitY.get(a),(Float)sijainnitX.get(a)+(Float)((Float)koot.get(a)*2),(Float)sijainnitY.get(a),(Float)sijainnitX.get(a)+((Float)koot.get(a)/2),(Float)sijainnitY.get(a)-((Float)koot.get(a)+((Float)koot.get(a)/2)));
         
         triangle((Float)sijainnitX.get(a)-((Float)koot.get(a)/2),(Float)sijainnitY.get(a)-((Float)koot.get(a)/(9/5)),(Float)sijainnitX.get(a)+((Float)koot.get(a)/2)+(Float)koot.get(a),(Float)sijainnitY.get(a)-((Float)koot.get(a)/(9/5)),(Float)sijainnitX.get(a)+((Float)koot.get(a)/2),(Float)sijainnitY.get(a)-((Float)koot.get(a)*2));

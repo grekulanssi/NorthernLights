@@ -29,11 +29,26 @@
     
     void draw(){
         background(5,5,50); //piirretään tausta uudestaan
+        teeTahdet();
         teeKuu();
         teeTakavuoret();
         teeEtuvuoret();
-        teeTahdet();
     }
+        /* Piirretään kuu */
+    void teeKuu(){
+      //Ensimmäisellä kerralla määritetään kuun sijainti
+      if(kuunX == 0) {      
+        kuunX  = random(50,750);
+        kuunY = random(50,300);      
+      }
+      //Piirretään kuu
+      ellipseMode(CENTER);
+      fill(190,175,120);
+      //fill(255,236,139);
+      noStroke();
+      ellipse(kuunX,kuunY,50,50);
+    }
+    
     void teeTahdet(){
      if(tahtienX.size() == 0){
       for(int i = 0; i<50; i++){
@@ -54,21 +69,6 @@
       noStroke();
       rect(tahtienX.get(k),tahtienY.get(k),z,z);
     }
-    }
-  
-    /* Piirretään kuu */
-    void teeKuu(){
-      //Ensimmäisellä kerralla määritetään kuun sijainti
-      if(kuunX == 0) {      
-        kuunX  = random(50,750);
-        kuunY = random(50,300);      
-      }
-      //Piirretään kuu
-      ellipseMode(CENTER);
-      fill(190,175,120);
-      //fill(255,236,139);
-      noStroke();
-      ellipse(kuunX,kuunY,50,50);
     }
     
     /* Lasketaan ja piirretään etuvuoret */
