@@ -11,18 +11,14 @@ public class Poro implements Sisalto {
   
   int x;
   int y;
-  boolean petteri;
+  boolean petteri = false;
+  int peiliY = 1;
 
 Poro(int ylaraja, int leveys) {
   if(random(10) < 1) {
     petteri = true;
   }
-  else {
-    petteri = false;
-  }
   
-  //println("Petteri: " + petteri);
-
   
   y = annaY(ylaraja);
   x = int(random(leveys));
@@ -34,20 +30,17 @@ void setup() {
 
 void draw() {
   float rand = random(2);
-  boolean peiliY = false;
   if(rand < 1) {
-    peiliY = true;
+    peiliY = -1;
   }
-  piirraPoro(peiliY);
+  piirraPoro();
 }  
 
 int annaY(int maksimi) {
   return int(random(maksimi, RUUDUN_KORKEUS));
 }
 
-
-
-void piirraPoro(boolean peilaus) {
+void piirraPoro() {
   stroke(100);
   strokeWeight(2);
   fill(200);
@@ -59,7 +52,7 @@ void piirraPoro(boolean peilaus) {
 void ruumis() {
   strokeWeight(1);
   ellipseMode(CORNER);
-  ellipse(x,y,20,10);
+  ellipse(x,y,peiliY*20,10);
 }
 
 void paa() {
