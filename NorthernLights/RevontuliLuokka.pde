@@ -21,8 +21,7 @@ class Revontulet implements Sisalto {
   int maxwaves = 3;   // total # of waves to add together
   int vaakaGradient = 100;
   float vinouskerroin;
-  boolean klikattu;
-  boolean aloitaUusi;
+  boolean aloitaUusi; //aloitetaanko seuraavalla klikkauksella uusi revontuli
   float revontuliaika;
   
   float theta = 0.0;
@@ -57,7 +56,6 @@ class Revontulet implements Sisalto {
     vinouskerroin = random(-0.2, 0.2);
     aloitusY = (int)-(vinouskerroin*400);
     xspacing = (int)random(2,4.8);
-    klikattu = false;
     aloitaUusi = true;
     
     for (int i = 0; i < maxwaves; i++) {
