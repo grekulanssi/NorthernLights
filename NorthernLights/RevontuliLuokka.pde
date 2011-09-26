@@ -57,9 +57,9 @@ class Revontulet implements Sisalto {
   void draw() {
     
     int space = 10;
-    if (mousePressed && mouseX > 0 && mouseX < yvalues.length-space) {
+    if (mousePressed && (mouseX-aloitusX) > 0 && (mouseX-aloitusX) < yvalues.length-space) {
       for (int q=0; q<space; q++) {
-       ymouses[mouseX+q] = mouseY; 
+       ymouses[mouseX-aloitusX+q] = mouseY-150; 
       }
     }
      
