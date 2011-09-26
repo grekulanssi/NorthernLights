@@ -48,7 +48,6 @@
       }
     }
 
-    
     for(int k = 0; k<tahtienX.size(); k++){
       float z = random(1.9, 2.6);
       fill(255);
