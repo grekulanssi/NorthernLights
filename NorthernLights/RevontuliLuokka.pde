@@ -26,6 +26,7 @@ class Revontulet implements Sisalto {
   float[] amplitude = new float[maxwaves];   // Height of wave
   float[] dx = new float[maxwaves];
   float[] yvalues;          // Using an array to store height values for the wave (not entirely necessary)
+  float[] ymouses;
   
   
   void setup() {
@@ -44,14 +45,28 @@ class Revontulet implements Sisalto {
   
     
     yvalues = new float[revontulenleveys];
+    ymouses = new float[revontulenleveys];
+    
+    // Set all height values to zero
+    for (int i = 0; i < ymouses.length; i++) {
+      ymouses[i] = 0;
+    }
   }
   
   
   void draw() {
+    
+    int space = 10;
+    if (mousePressed && mouseX > 0 && mouseX < yvalues.length-space) {
+      for (int q=0; q<space; q++) {
+       ymouses[mouseX+q] = mouseY; 
+      }
+    }
      
     calcWave();
     renderWave();
     
+    //println("X: " + mouseX + ", Y: " + mouseY);
 
     
   }
@@ -93,7 +108,7 @@ class Revontulet implements Sisalto {
   
     // Set all height values to zero
     for (int i = 0; i < yvalues.length; i++) {
-      yvalues[i] = 0;
+      yvalues[i] = ymouses[i];
     }
    
     // Accumulate wave height values
@@ -129,7 +144,7 @@ class Revontulet implements Sisalto {
       
       else if (x >= revontulenleveys-feidiSivusta) {
         float valmius = 1-((float)(x-revontulenleveys+feidiSivusta))/feidiSivusta;
-        println(valmius);
+        //println(valmius);
         tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
       }
       
