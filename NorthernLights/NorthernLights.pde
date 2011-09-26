@@ -8,10 +8,12 @@ void setup() {
   background(color(0,0,0)); 
   smooth();
   
+  
   sisallot.add(new Lapintausta());  
   sisallot.add(new KuusiLuokka());  
   sisallot.add(new Revontulet());
   sisallot.add(new VuoriLuokka());
+  
   
   int poroja = int(random(5))+1;
   for(int i = 0; i < poroja; i++) {
