@@ -33,7 +33,12 @@ void setup() {
 }
 
 void draw() {
-  piirraPoro();
+  float rand = random(2);
+  boolean peiliY = false;
+  if(rand < 1) {
+    peiliY = true;
+  }
+  piirraPoro(peiliY);
 }  
 
 int annaY(int maksimi) {
@@ -42,8 +47,7 @@ int annaY(int maksimi) {
 
 
 
-void piirraPoro() {
-  //println("piirretään poro " + x + " ja " + y);
+void piirraPoro(boolean peilaus) {
   stroke(100);
   strokeWeight(2);
   fill(200);
