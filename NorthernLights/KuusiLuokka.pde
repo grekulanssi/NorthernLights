@@ -1,4 +1,4 @@
-  public class KuusiLuokka implements Sisalto{
+  public class KuusiLuokka implements Sisalto {
   
   ArrayList kuuset;
   ArrayList kannat;
