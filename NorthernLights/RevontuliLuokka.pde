@@ -21,6 +21,8 @@ class Revontulet implements Sisalto {
   int maxwaves = 3;   // total # of waves to add together
   int vaakaGradient = 100;
   float vinouskerroin;
+  boolean klikattu;
+  float revontuliaika;
   
   float theta = 0.0;
   float[] amplitude = new float[maxwaves];   // Height of wave
@@ -32,10 +34,11 @@ class Revontulet implements Sisalto {
   void setup() {
     
     revontulenleveys = (int)random(500,700);
-    aloitusX = (int)random(-100,250);
+    //aloitusX = (int)random(-100,250);
     vinouskerroin = random(-0.2, 0.2);
-    aloitusY = (int)-(vinouskerroin*400);
+    //aloitusY = (int)-(vinouskerroin*400);
     xspacing = (int)random(2,4.8);
+    klikattu = false;
     
     for (int i = 0; i < maxwaves; i++) {
       amplitude[i] = random(3,10);
@@ -56,15 +59,20 @@ class Revontulet implements Sisalto {
   
   void draw() {
     
-    int space = 10;
-    if (mousePressed && (mouseX-aloitusX) > 0 && (mouseX-aloitusX) < yvalues.length-space) {
-      for (int q=0; q<space; q++) {
-       ymouses[mouseX-aloitusX+q] = mouseY-150; 
-      }
+    if (mousePressed && klikattu == false) {
+       klikattu = true; 
+       revontuliaika = millis();
+       aloitusX = mouseX;
+       aloitusY = mouseY-150;
+    }
+    
+    
+    if (klikattu == true) {
+      calcWave();
+      renderWave();      
     }
      
-    calcWave();
-    renderWave();
+    
     
     //println("X: " + mouseX + ", Y: " + mouseY);
 
@@ -132,7 +140,10 @@ class Revontulet implements Sisalto {
       int ero = Math.abs(vaakaGradient/2-luku);
       int feidiSivusta = 200;
       
-      color tulenvari = color(47, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
+      //color tulenvari = color(0, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
+      color tulenvari = color(181+(ero), 0, 0, 255); //tulenvarireuna vaihtelee
+      //color tulenvari = color(0, 0, 181+(ero), 255); //tulenvarireuna vaihtelee
+
       
       /* Revontulen reunat feidaa */
       if (x <= feidiSivusta) {
