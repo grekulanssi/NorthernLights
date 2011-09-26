@@ -22,6 +22,7 @@ class Revontulet implements Sisalto {
   int vaakaGradient = 100;
   float vinouskerroin;
   boolean klikattu;
+  boolean aloitaUusi;
   float revontuliaika;
   
   float theta = 0.0;
@@ -31,14 +32,33 @@ class Revontulet implements Sisalto {
   float[] ymouses;
   
   
+  /* Tämä metodi asettaa muistiin klikatut pisteet */
+  void asetaPiste(int x1, int x2, int y1, int y2) {    
+     
+   
+   float xdif = x2-x1;
+   float ydif = y2-y1;
+   float perone = ydif/xdif;
+   
+   if (xdif < 0)
+     return;
+   
+   for (int q=0; q<=xdif; q++) {
+    ymouses[x1+q] = y1+q*perone;
+   }
+   
+   
+  }
+  
   void setup() {
     
     revontulenleveys = (int)random(500,700);
-    //aloitusX = (int)random(-100,250);
+    aloitusX = (int)random(-100,250);
     vinouskerroin = random(-0.2, 0.2);
-    //aloitusY = (int)-(vinouskerroin*400);
+    aloitusY = (int)-(vinouskerroin*400);
     xspacing = (int)random(2,4.8);
     klikattu = false;
+    aloitaUusi = true;
     
     for (int i = 0; i < maxwaves; i++) {
       amplitude[i] = random(3,10);
@@ -50,36 +70,47 @@ class Revontulet implements Sisalto {
     yvalues = new float[revontulenleveys];
     ymouses = new float[revontulenleveys];
     
-    // Set all height values to zero
     for (int i = 0; i < ymouses.length; i++) {
-      ymouses[i] = 0;
+      ymouses[i] = -9999;
     }
   }
+  
+  
   
   
   void draw() {
     
-    if (mousePressed && klikattu == false) {
-       klikattu = true; 
-       revontuliaika = millis();
-       aloitusX = mouseX;
-       aloitusY = mouseY-150;
+    int yKorjaus = 150;
+    
+    /* Piirtämisen jälkeen aktivoidaan aloitauusi */
+    if (mousePressed == false && aloitaUusi == false) {
+      aloitaUusi = true;
     }
     
+    /* Aloitetaan uusi revontuli */
+    if (aloitaUusi == true && mousePressed) {
+      for (int i = 0; i < ymouses.length; i++) {
+        ymouses[i] = -9999;
+      }
+      aloitusX = mouseX;
+      aloitusY = mouseY-yKorjaus;
+    }
     
-    if (klikattu == true) {
+    /* Otetaan talteen revontulen pisteitä */
+    if (mousePressed && pmouseX-aloitusX >= 0 && mouseX-aloitusX < revontulenleveys) {
+      asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);
+      aloitaUusi = false;
+  }    
+    
+    /* Piirretään revontuli */
       calcWave();
       renderWave();      
-    }
-     
-    
-    
-    //println("X: " + mouseX + ", Y: " + mouseY);
 
+   
     
   }
   
-  
+  /* Tämä metodi piirtää pystypalkkigradientin */
   void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ){
 
    
@@ -109,7 +140,7 @@ class Revontulet implements Sisalto {
   }
   
   
-  
+  /* Tämä metodi laskee revontulen sinicosiniaallon */
   void calcWave() {
     // Increment theta (try different values for 'angular velocity' here
     theta += 0.02;
@@ -131,9 +162,10 @@ class Revontulet implements Sisalto {
     }
   }
   
+  /* Tämä metodi renderöi revontulen */
   void renderWave() {
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = 0; x < yvalues.length; x++) {
+    for (int x = 0; x < yvalues.length ; x++) {
   
       noStroke();   
       int luku = x % vaakaGradient;
