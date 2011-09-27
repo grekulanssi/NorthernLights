@@ -176,19 +176,19 @@ class Revontulet implements Sisalto {
       int feidiSivusta = 200;
      if(int(arpa) == 0){
        tulenvari = color(0, 181+(ero), 0, 255);
-       println(0);
+       //println(0);
      } 
      if(int(arpa) == 1){
        tulenvari = color(181+(ero), 0, 0, 255);
-       println(1);
+       //println(1);
      } 
      if(int(arpa) == 2){
        tulenvari = color(181+(ero),255,0,255);
-       println(2);
+       //println(2);
      } 
      if(int(arpa) == 3){
        tulenvari = color(181+(ero),0,106,255);
-       println(3);
+       //println(3);
      }
       //color tulenvari = color(0, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
       //color tulenvari = color(181+(ero), 0, 0, 255); //tulenvarireuna vaihtelee
