@@ -91,11 +91,9 @@ class Revontulet implements Sisalto {
   
   
   void draw() {
-    
-    
+
     int yKorjaus = 150; //paljonko revontulta siirretään hiireen nähden
-    
-    
+
     /* Hiirtä ei paineta, piirtäminen on päättynyt, aktivoidaan aloitaUusi */
     if (mousePressed == false && aloitaUusi == false) {
       aloitaUusi = true;      
@@ -112,7 +110,7 @@ class Revontulet implements Sisalto {
     }
     
     /* Painetaan hiirtä, otetaan talteen revontulen pisteitä */
-    if (mousePressed && pmouseX-aloitusX >= 0 && mouseX < ikkunanleveys) {
+    if (aloitaUusi == false && mousePressed && pmouseX-aloitusX >= 0 && mouseX < ikkunanleveys) {
       asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);      
       revontulenleveys = mouseX-aloitusX;
     }    
