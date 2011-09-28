@@ -102,7 +102,7 @@ class Revontulet implements Sisalto {
     
     /* Painetaan hiirtä ja aloitetaan uusi revontuli */
     if (aloitaUusi == true && mousePressed) {
-      arpa = random(0,3.4);
+      arpa = random(0.3,5.4);
 
       setup();
       aloitusX = mouseX;
@@ -144,7 +144,7 @@ class Revontulet implements Sisalto {
         color c = color(
         (red(c2)),
         (green(c2)),
-        (blue(c1)), alfa);
+        (blue(c2)), alfa);
         
        stroke(c);
        point(i,j);
@@ -217,7 +217,13 @@ class Revontulet implements Sisalto {
      if(int(arpa) == 3){
        tulenvari = color(181+(ero),0,106,255);
      }
-
+     if(int(arpa) == 4){
+       tulenvari = color(255+(ero),0,234);
+     }
+     if(int(arpa) == 5){
+       tulenvari = color(51,0,255+(ero));
+     }
+     
       int tempx = x;
       
       /* Revontulen reunat feidaa */
