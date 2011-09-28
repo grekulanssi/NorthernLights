@@ -35,7 +35,7 @@
         kuunX  = random(50,750);
         kuunY = random(50,300);
         //lisäksi määrätään sädekehän leveys
-        sadekeha = int(random(5,20));      
+        sadekeha = int(random(50,70));      
       }
       //Piirretään kuu
       ellipseMode(CENTER);
@@ -43,13 +43,13 @@
       for(int k = 0; k < sadekeha; k++) {
        fill(190,175,120,k);
        noStroke();
-       ellipse(kuunX,kuunY, 50+k,50+k);
+       ellipse(kuunX,kuunY, k,k);
       } 
-      //Itse kuumöllykän piirto
+      /*Itse kuumöllykän piirto - Ei tarvita
       fill(190,175,120);
       //fill(255,236,139);
       noStroke();
-      ellipse(kuunX,kuunY,50,50);
+      //ellipse(kuunX,kuunY,50,50);*/
     }
     
     void teeTahdet(){
