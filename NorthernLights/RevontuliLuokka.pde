@@ -8,43 +8,45 @@ Käytetty apuna Processingin Gradient ja AddictiveWave exampleja.
 */
 
 class Revontulet implements Sisalto {
-  
-  // constants
-  int Y_AXIS = 1;
-  int X_AXIS = 2;
-  
-  //revontulikertoimia
+    
+  //Revontulen koko, asento ja sijainti
   int revontulenleveys;
   int aloitusX;
   int aloitusY;
-  int xspacing;   // How far apart should each horizontal location be spaced
-  int maxwaves = 3;   // total # of waves to add together
-  int vaakaGradient = 100;
   float vinouskerroin;
-  boolean aloitaUusi; //aloitetaanko seuraavalla klikkauksella uusi revontuli
-  float revontuliaika;
   
+  //Revontulen muoto
+  int xspacing;   // aaltojen väli x-suunnassa
+  int maxwaves = 3;   // montako aaltoa lisätään yhteen
+  int vaakaGradient = 100; //vaakasuunnassa tapahtuvan liukuvärin väli
+  
+  //Muut muuttujat
+  boolean aloitaUusi; // aloitetaanko seuraavalla klikkauksella uusi revontuli
+  float revontuliaika; // revontulen luontiaika
+  
+  //Revontulen tietoja
   float theta = 0.0;
-  float[] amplitude = new float[maxwaves];   // Height of wave
+  float[] amplitude = new float[maxwaves];   // aallon korkeus
   float[] dx = new float[maxwaves];
-  float[] yvalues;          // Using an array to store height values for the wave (not entirely necessary)
-  float[] ymouses;
+  float[] yvalues; //revontulen oikeat y-arvot 
+  float[] ymouses; //hiireltä saadut y-arvot
   
-  //varijuttuja
+  //Revontulen värit
   float arpa;
   color tulenvari;
   
   /* Tämä metodi asettaa muistiin klikatut pisteet */
   void asetaPiste(int x1, int x2, int y1, int y2) {    
-     
-   
+
    float xdif = x2-x1;
    float ydif = y2-y1;
    float perone = ydif/xdif;
    
+   //Hiirtä voi vetää vain vasemmalta oikealle
    if (xdif < 0)
      return;
    
+   //Piirretään viivaa
    for (int q=0; q<=xdif; q++) {
     ymouses[x1+q] = y1+q*perone;
    }
@@ -53,15 +55,19 @@ class Revontulet implements Sisalto {
   }
   
   void setup() {
+    
+    //Asetetaan revontulelle varalta tietyt arvot (nämä muuttuvat myöhemmin)
     revontulenleveys = (int)random(500,700);
     aloitusX = 0;
     aloitusY = 0;
     
+    //Arvotaan revontulen muodolle määrittelyt
     vinouskerroin = random(-0.2, 0.2);    
     xspacing = (int)random(2,4.8);
     aloitaUusi = true;
     
     
+    // Arvotaan revontulta
     for (int i = 0; i < maxwaves; i++) {
       amplitude[i] = random(3,10);
       float period = random(400,900); // How many pixels before the wave repeats
@@ -69,6 +75,7 @@ class Revontulet implements Sisalto {
     }
   
     
+    //Nollataan revontulen y(x) -käyrä
     yvalues = new float[revontulenleveys];
     ymouses = new float[revontulenleveys];
     
@@ -84,26 +91,23 @@ class Revontulet implements Sisalto {
   void draw() {
     
     
-    int yKorjaus = 150;
+    int yKorjaus = 150; //paljonko revontulta siirretään hiireen nähden
     
-    /* Piirtämisen jälkeen aktivoidaan aloitauusi */
+    /* Hiirtä ei paineta, piirtäminen on päättynyt, aktivoidaan aloitaUusi */
     if (mousePressed == false && aloitaUusi == false) {
-      aloitaUusi = true;
-      
+      aloitaUusi = true;      
     }
     
-    /* Aloitetaan uusi revontuli */
+    /* Painetaan hiirtä ja aloitetaan uusi revontuli */
     if (aloitaUusi == true && mousePressed) {
       arpa = random(0,3.4);
-      for (int i = 0; i < ymouses.length; i++) {
-        ymouses[i] = -9999;
-      }
+
       setup();
       aloitusX = mouseX;
       aloitusY = mouseY-yKorjaus;
     }
     
-    /* Otetaan talteen revontulen pisteitä */
+    /* Painetaan hiirtä, otetaan talteen revontulen pisteitä */
     if (mousePressed && pmouseX-aloitusX >= 0 && mouseX-aloitusX < revontulenleveys) {
       asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);
       aloitaUusi = false;
@@ -118,7 +122,7 @@ class Revontulet implements Sisalto {
   }
   
   /* Tämä metodi piirtää pystypalkkigradientin */
-  void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ){
+  void setGradient(int x, int y, float w, float h, color c1, color c2 ){
 
    
     //c2 on revontulen väri
@@ -220,7 +224,7 @@ class Revontulet implements Sisalto {
       color tausta = color(5, 5,50); //yläreuna
       
       setGradient(aloitusX+x, aloitusY+(int)(yvalues[x]+vinouskerroin*x),
-                 1, 150, tausta, tulenvari, Y_AXIS);
+                 1, 150, tausta, tulenvari);
     }
   }
 
