@@ -10,6 +10,7 @@ Käytetty apuna Processingin Gradient ja AddictiveWave exampleja.
 class Revontulet implements Sisalto {
     
   //Revontulen koko, asento ja sijainti
+  int ikkunanleveys = 800;
   int revontulenleveys;
   int aloitusX;
   int aloitusY;
@@ -57,7 +58,7 @@ class Revontulet implements Sisalto {
   void setup() {
     
     //Asetetaan revontulelle varalta tietyt arvot (nämä muuttuvat myöhemmin)
-    revontulenleveys = (int)random(500,700);
+    revontulenleveys = 0;
     aloitusX = 0;
     aloitusY = 0;
     
@@ -76,8 +77,8 @@ class Revontulet implements Sisalto {
   
     
     //Nollataan revontulen y(x) -käyrä
-    yvalues = new float[revontulenleveys];
-    ymouses = new float[revontulenleveys];
+    yvalues = new float[ikkunanleveys]; //800 on ikkunan leveys
+    ymouses = new float[ikkunanleveys]; //
     
     for (int i = 0; i < ymouses.length; i++) {
       ymouses[i] = -9999;
@@ -108,9 +109,10 @@ class Revontulet implements Sisalto {
     }
     
     /* Painetaan hiirtä, otetaan talteen revontulen pisteitä */
-    if (mousePressed && pmouseX-aloitusX >= 0 && mouseX-aloitusX < revontulenleveys) {
+    if (mousePressed && pmouseX-aloitusX >= 0 && mouseX < ikkunanleveys) {
       asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);
       aloitaUusi = false;
+      revontulenleveys = mouseX-aloitusX;
   }    
     
     /* Piirretään revontuli */
@@ -183,6 +185,9 @@ class Revontulet implements Sisalto {
       int luku = x % vaakaGradient;
       int ero = Math.abs(vaakaGradient/2-luku);
       int feidiSivusta = 200;
+      if (revontulenleveys < 400) {
+        feidiSivusta = revontulenleveys/2;
+      }
       
      if(int(arpa) == 0){
        tulenvari = color(0, 181+(ero), 0, 255);
