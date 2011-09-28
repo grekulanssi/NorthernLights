@@ -66,6 +66,7 @@ class Revontulet implements Sisalto {
     vinouskerroin = random(-0.2, 0.2);    
     xspacing = (int)random(2,4.8);
     aloitaUusi = true;
+    revontuliaika = millis();
     
     
     // Arvotaan revontulta
@@ -177,9 +178,20 @@ class Revontulet implements Sisalto {
   
   /* Tämä metodi renderöi revontulen */
   void renderWave() {
+    
+    float testi;
+    
+    if((millis() - revontuliaika)/1000 < 5) {
+      testi = 0;
+    } else {
+      testi = (((millis()-revontuliaika)/1000)-5)*20;
+    }
+    
+    println(testi);
+
 
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = 0; x < yvalues.length ; x++) {
+    for (int x = (int)testi; x < yvalues.length ; x++) {
   
       noStroke();   
       int luku = x % vaakaGradient;
