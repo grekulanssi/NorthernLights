@@ -179,28 +179,29 @@ class Revontulet implements Sisalto {
   /* Tämä metodi renderöi revontulen */
   void renderWave() {
     
-    float testi;
+    int testi;
     
     if((millis() - revontuliaika)/1000 < 5) {
       testi = 0;
     } else {
-      testi = (((millis()-revontuliaika)/1000)-5)*20;
+      testi = (int)((((millis()-revontuliaika)/1000)-5)*20);
     }
     
-    println(testi);
+    //println(testi);
 
-
+    noStroke();   
+    int feidiSivusta = 200;
+    if (revontulenleveys < 400) {
+      feidiSivusta = revontulenleveys/2;
+    }
+    
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = (int)testi; x < yvalues.length ; x++) {
+    for (int x = testi; x < yvalues.length ; x++) {
   
-      noStroke();   
+      
       int luku = x % vaakaGradient;
       int ero = Math.abs(vaakaGradient/2-luku);
-      int feidiSivusta = 200;
-      if (revontulenleveys < 400) {
-        feidiSivusta = revontulenleveys/2;
-      }
-      
+
      if(int(arpa) == 0){
        tulenvari = color(0, 181+(ero), 0, 255);
        //println(0);
@@ -215,22 +216,19 @@ class Revontulet implements Sisalto {
      } 
      if(int(arpa) == 3){
        tulenvari = color(181+(ero),0,106,255);
-       //println(3);
      }
 
-      //color tulenvari = color(0, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
-      //color tulenvari = color(181+(ero), 0, 0, 255); //tulenvarireuna vaihtelee
-      //color tulenvari = color(0, 0, 181+(ero), 255); //tulenvarireuna vaihtelee
-      //color tulenvari = color(181+(ero),255,0,255);
-      //color tulenvari = color(181+(ero),0,106,255);
+      int tempx = x;
       
       /* Revontulen reunat feidaa */
-      if (x <= feidiSivusta) {
-        float valmius = (float)x/feidiSivusta;
+      if (x <= (feidiSivusta+testi)) {
+
+        tempx = x-testi;
+        float valmius = (float)tempx/(feidiSivusta);
         //println(valmius);
         tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
 
-    }
+      }
       
       else if (x >= revontulenleveys-feidiSivusta) {
         float valmius = 1-((float)(x-revontulenleveys+feidiSivusta))/feidiSivusta;
