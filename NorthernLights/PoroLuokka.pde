@@ -17,7 +17,7 @@ public class Poro implements Sisalto {
   float klikkaushetki;
   
 Poro(float[] ylarajataulukko, int leveys) {
-  if(random(10) < 0.7) {
+  if(random(10) < 0.5) {
     petteri = true;
   }
   
