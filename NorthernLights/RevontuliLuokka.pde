@@ -205,7 +205,7 @@ class Revontulet implements Sisalto {
     }
     
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = testi; x < yvalues.length ; x++) {
+    for (int x = testi; x < revontulenleveys ; x++) {
   
       
       int luku = x % vaakaGradient;
