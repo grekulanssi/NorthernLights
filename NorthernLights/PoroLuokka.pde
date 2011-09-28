@@ -1,6 +1,5 @@
-/*TODO: peilaa osa poroista, pienennä niitä, laita petterin nenä vilkkumaan
-//background colorin mukaan sijainnin asettaminen.
-
+/*
+Porot tehny Anssi. Kumma ko alle 3px halkaisijan ellipse ei enää piirry mihinkään :(
 */
 import java.awt.event.*;
 
@@ -18,7 +17,7 @@ public class Poro implements Sisalto {
   float klikkaushetki;
   
 Poro(float[] ylarajataulukko, int leveys) {
-  if(random(10) < 1) {
+  if(random(10) < 0.7) {
     petteri = true;
   }
   
@@ -30,7 +29,7 @@ Poro(float[] ylarajataulukko, int leveys) {
     y = annaY(int(ylarajat[x]));
   }
   else {
-    y = int(random(400,450));
+    y = int(random(400,434));
   }
 }
 
@@ -62,8 +61,6 @@ void piirraPoro() {
   
   popMatrix();
   if(!kasvatus && mousePressed && abs(pmouseX-x) < 10 && abs(mouseY-y) < 5) {
-    println("meni, mousex: " + abs(pmouseX) + ", x: " + x);
-    println("meni, mousey: " + abs(pmouseY) + ", y: " + y);
     kasvatus = true;
     klikkaushetki = millis();
   }
@@ -107,19 +104,19 @@ void paa() {
     float m = millis();
     fill(m%220,20,20);
     stroke(m%220,20,20);
-    ellipse(-5,0,5,5);
+    ellipse(-5,1,4,4);
   }
   else {
     stroke(100,70,26);
     fill(100,70,26);
-    ellipse(-5,0,5,5);
+    ellipse(-5,1,4,4);
   }
   
-  //silma
-  stroke(100);
+  /*silma
+  stroke(0);
   fill(0);
-  ellipse(1,-1,1,1);
-  
+  ellipse(1,-1,4,4);
+  */
   return;
 }
 
