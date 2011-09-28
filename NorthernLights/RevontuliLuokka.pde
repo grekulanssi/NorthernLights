@@ -102,7 +102,7 @@ class Revontulet implements Sisalto {
     
     /* Painetaan hiirtä ja aloitetaan uusi revontuli */
     if (aloitaUusi == true && mousePressed) {
-      arpa = random(0,3.4);
+      arpa = random(0.3,5.4);
 
       setup();
       aloitusX = mouseX;
@@ -144,7 +144,7 @@ class Revontulet implements Sisalto {
         color c = color(
         (red(c2)),
         (green(c2)),
-        (blue(c1)), alfa);
+        (blue(c2)), alfa);
         
        stroke(c);
        point(i,j);
@@ -191,8 +191,8 @@ class Revontulet implements Sisalto {
 
     noStroke();   
     int feidiSivusta = 200;
-    if (revontulenleveys < 400) {
-      feidiSivusta = revontulenleveys/2;
+    if (revontulenleveys-testi < 400) {
+      feidiSivusta = (revontulenleveys-testi)/2;
     }
     
     //Piirretään liukuväripystypalkkeja vierekkäin
@@ -217,7 +217,13 @@ class Revontulet implements Sisalto {
      if(int(arpa) == 3){
        tulenvari = color(181+(ero),0,106,255);
      }
-
+     if(int(arpa) == 4){
+       tulenvari = color(255+(ero),0,234);
+     }
+     if(int(arpa) == 5){
+       tulenvari = color(51,0,255+(ero));
+     }
+     
       int tempx = x;
       
       /* Revontulen reunat feidaa */
@@ -227,12 +233,16 @@ class Revontulet implements Sisalto {
         float valmius = (float)tempx/(feidiSivusta);
         //println(valmius);
         tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
-
+        //tulenvari = color(0, 255, 0);
+        
       }
       
       else if (x >= revontulenleveys-feidiSivusta) {
+        
+        tempx = x-testi;
         float valmius = 1-((float)(x-revontulenleveys+feidiSivusta))/feidiSivusta;
         //println(valmius);
+        //tulenvari = color(255, 0, 0);
         tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
       }
       
