@@ -52,9 +52,10 @@ class Revontulet implements Sisalto {
   void setup() {
     
     revontulenleveys = (int)random(500,700);
-    aloitusX = (int)random(-100,250);
-    vinouskerroin = random(-0.2, 0.2);
-    aloitusY = (int)-(vinouskerroin*400);
+    aloitusX = 0;
+    aloitusY = 0;
+    
+    vinouskerroin = random(-0.2, 0.2);    
     xspacing = (int)random(2,4.8);
     aloitaUusi = true;
     
@@ -78,11 +79,13 @@ class Revontulet implements Sisalto {
   
   void draw() {
     
+    
     int yKorjaus = 150;
     
     /* Piirtämisen jälkeen aktivoidaan aloitauusi */
     if (mousePressed == false && aloitaUusi == false) {
       aloitaUusi = true;
+      
     }
     
     /* Aloitetaan uusi revontuli */
@@ -90,6 +93,7 @@ class Revontulet implements Sisalto {
       for (int i = 0; i < ymouses.length; i++) {
         ymouses[i] = -9999;
       }
+      setup();
       aloitusX = mouseX;
       aloitusY = mouseY-yKorjaus;
     }
