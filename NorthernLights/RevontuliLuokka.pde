@@ -91,28 +91,17 @@ class Revontulet implements Sisalto {
   
   
   void draw() {
-    
-    /* jos hiirtä painetaan alhaalla porojen luona, 
-    niin näkyvä revontuli ei nollaannu EI TOIMI OIKEIN VIELÄ*/
-    if(pmouseY > 350 && mousePressed) {
-        aloitaUusi = false;
-      }
-      
-      
-    
-    
+
     int yKorjaus = 150; //paljonko revontulta siirretään hiireen nähden
-    
+
     /* Hiirtä ei paineta, piirtäminen on päättynyt, aktivoidaan aloitaUusi */
     if (mousePressed == false && aloitaUusi == false) {
-      aloitaUusi = true;
+      aloitaUusi = true;      
       revontulenpiirtoMenossa = false;      
     }
     
-    
-    
     /* Painetaan hiirtä ja aloitetaan uusi revontuli */
-    if (aloitaUusi == true && mousePressed) {
+    if (aloitaUusi == true && mousePressed && mouseY < 350) {
       
       revontulenpiirtoMenossa = true;
       
@@ -121,16 +110,15 @@ class Revontulet implements Sisalto {
       setup();
       aloitusX = mouseX;
       aloitusY = mouseY-yKorjaus;
-      
+      aloitaUusi = false;
     }
     
     /* Painetaan hiirtä, otetaan talteen revontulen pisteitä */
-    if (mousePressed && pmouseX-aloitusX >= 0 && mouseX < ikkunanleveys) {
-      
-      asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);
-      aloitaUusi = false;
+    if (aloitaUusi == false && mousePressed && pmouseX-aloitusX >= 0 && mouseX < ikkunanleveys) {
+      asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);      
       revontulenleveys = mouseX-aloitusX;
-  }    
+    }    
+
     
     /* Piirretään revontuli */
       calcWave();
@@ -194,7 +182,7 @@ class Revontulet implements Sisalto {
   
   /* Tämä metodi renderöi revontulen */
   void renderWave() {
-        
+    
     int testi;
     
     if((millis() - revontuliaika)/1000 < 5) {
@@ -212,7 +200,7 @@ class Revontulet implements Sisalto {
     }
     
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = testi; x < yvalues.length ; x++) {
+    for (int x = testi; x < revontulenleveys ; x++) {
   
       
       int luku = x % vaakaGradient;
