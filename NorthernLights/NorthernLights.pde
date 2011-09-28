@@ -21,9 +21,7 @@ void setup() {
   //Lisätään poroja
   int poroja = int(random(5))+1;
   for(int i = 0; i < poroja; i++) {
-    Poro p = new Poro(440,800);
-    p.asetaYlarajat(vuoristo.annaYlareunanPisteet());
-    sisallot.add(new Poro(440,800));
+    sisallot.add(new Poro(vuoristo.annaYlareunanPisteet(),800));
   }
   
   //Suoritetaan sisältöjen setupit

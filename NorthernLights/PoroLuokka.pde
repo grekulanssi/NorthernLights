@@ -15,18 +15,22 @@ public class Poro implements Sisalto {
   int peiliY = 1;
   boolean kasvatus = false;
   float[] ylarajat;
+  float klikkaushetki;
   
-Poro(int ylaraja, int leveys) {
+Poro(float[] ylarajataulukko, int leveys) {
   if(random(10) < 1) {
     petteri = true;
   }
   
+  ylarajat = ylarajataulukko;
+  
   x = int(random(leveys));
   if(ylarajat != null) {
+    println("jepajepajepa");
     y = annaY(int(ylarajat[x]));
   }
   else {
-    y = annaY(ylaraja);
+    y = int(random(400,450));
   }
 }
 
@@ -53,16 +57,16 @@ void piirraPoro() {
   paa();
   
   if(kasvatus) {
-    float t = millis() / 1000.0;
-    rotate(t);
     kasvataSarvet();
   }
   
-  if(!kasvatus && mousePressed && abs(pmouseX) < x+10 && abs(mouseY) < y+5) {
-    kasvatus = true;
-  }
-  
   popMatrix();
+  if(!kasvatus && mousePressed && abs(pmouseX-x) < 10 && abs(mouseY-y) < 5) {
+    println("meni, mousex: " + abs(pmouseX) + ", x: " + x);
+    println("meni, mousey: " + abs(pmouseY) + ", y: " + y);
+    kasvatus = true;
+    klikkaushetki = millis();
+  }
 }
 
 void jalat() {
@@ -100,14 +104,15 @@ void paa() {
   strokeWeight(1);
   //nena
   if(petteri) {
-    fill(220,20,20);
-    stroke(220,20,20);
-    ellipse(-5,0,3,3);
+    float m = millis();
+    fill(m%220,20,20);
+    stroke(m%220,20,20);
+    ellipse(-5,0,5,5);
   }
   else {
     stroke(100,70,26);
     fill(100,70,26);
-    ellipse(-5,0,2,2);
+    ellipse(-5,0,5,5);
   }
   
   //silma
@@ -121,12 +126,6 @@ void paa() {
 void kasvataSarvet() {
   petteri = true;
   
-}
-
-void asetaYlarajat(float[] rajat) {
-  if(ylarajat == null) {
-    ylarajat = rajat;
-  }
 }
 
 }

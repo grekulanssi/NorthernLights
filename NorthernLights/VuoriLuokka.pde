@@ -16,6 +16,7 @@ class VuoriLuokka implements Sisalto {
       kuusiLuokka.koot = new ArrayList<Float>();
       
       
+      
   }
   
   void draw() {
