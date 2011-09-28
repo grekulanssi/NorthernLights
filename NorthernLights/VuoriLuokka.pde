@@ -3,6 +3,8 @@ class VuoriLuokka implements Sisalto {
   KuusiLuokka kuusiLuokka;
   ArrayList<Float> takavuorenPisteet = new ArrayList<Float>(); //taaimmaisen vuoren y-koordinaatit
   ArrayList<Float> etuvuorenPisteet = new ArrayList<Float>(); //etummaisen vuoren y-koordinaatit
+  private float[] ylareunanPisteet;
+  
   
   void setup() {
    
@@ -11,7 +13,9 @@ class VuoriLuokka implements Sisalto {
       kuusiLuokka.kuuset = new ArrayList(); // Artin lisäämä
       kuusiLuokka.sijainnitX = new ArrayList<Float>();
       kuusiLuokka.sijainnitY = new ArrayList<Float>();
-      kuusiLuokka.koot = new ArrayList<Float>(); 
+      kuusiLuokka.koot = new ArrayList<Float>();
+      
+      
   }
   
   void draw() {
@@ -52,7 +56,7 @@ class VuoriLuokka implements Sisalto {
     void teeEtuvuoret(){
       //Lasketaan etuvuoret
       if (etuvuorenPisteet.size() == 0) {
-        float[] taulukko = new float[800]; // Artin lisäämä    
+        float[] ylareunanPisteet = new float[800]; // Artin lisäämä, Anssi vaihto nimen    
         float kulma3 = 0;
         float kulma2 = 0;
         float luku2 = random(0.80,1.5);
@@ -71,8 +75,8 @@ class VuoriLuokka implements Sisalto {
           
           
           if(j < 800) {
-            taulukko[j] = (py2+py3)/2;
-            kuusiLuokka.lisaaListaan(taulukko[j]);
+            ylareunanPisteet[j] = (py2+py3)/2;
+            kuusiLuokka.lisaaListaan(ylareunanPisteet[j]);
           }
             
         }
@@ -91,7 +95,9 @@ class VuoriLuokka implements Sisalto {
      
     }
   
-  
+  public float[] annaYlareunanPisteet() {
+    return ylareunanPisteet;
+  }
   
   
   
