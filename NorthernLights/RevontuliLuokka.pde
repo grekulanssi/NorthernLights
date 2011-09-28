@@ -31,7 +31,7 @@ class Revontulet implements Sisalto {
   float[] ymouses;
   
   //varijuttuja
-  float arpa = random(0,3.4);
+  float arpa;
   color tulenvari;
   
   /* Tämä metodi asettaa muistiin klikatut pisteet */
@@ -53,7 +53,6 @@ class Revontulet implements Sisalto {
   }
   
   void setup() {
-    
     revontulenleveys = (int)random(500,700);
     aloitusX = (int)random(-100,250);
     vinouskerroin = random(-0.2, 0.2);
@@ -75,6 +74,7 @@ class Revontulet implements Sisalto {
     for (int i = 0; i < ymouses.length; i++) {
       ymouses[i] = -9999;
     }
+
   }
   
   
@@ -91,6 +91,7 @@ class Revontulet implements Sisalto {
     
     /* Aloitetaan uusi revontuli */
     if (aloitaUusi == true && mousePressed) {
+      arpa = random(0,3.4);
       for (int i = 0; i < ymouses.length; i++) {
         ymouses[i] = -9999;
       }
@@ -174,6 +175,7 @@ class Revontulet implements Sisalto {
       int luku = x % vaakaGradient;
       int ero = Math.abs(vaakaGradient/2-luku);
       int feidiSivusta = 200;
+      
      if(int(arpa) == 0){
        tulenvari = color(0, 181+(ero), 0, 255);
        println(0);
@@ -190,6 +192,7 @@ class Revontulet implements Sisalto {
        tulenvari = color(181+(ero),0,106,255);
        println(3);
      }
+
       //color tulenvari = color(0, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
       //color tulenvari = color(181+(ero), 0, 0, 255); //tulenvarireuna vaihtelee
       //color tulenvari = color(0, 0, 181+(ero), 255); //tulenvarireuna vaihtelee
