@@ -105,7 +105,8 @@ class Revontulet implements Sisalto {
     
     /* Hiirtä ei paineta, piirtäminen on päättynyt, aktivoidaan aloitaUusi */
     if (mousePressed == false && aloitaUusi == false) {
-      aloitaUusi = true;      
+      aloitaUusi = true;
+      revontulenpiirtoMenossa = false;      
     }
     
     
@@ -190,6 +191,8 @@ class Revontulet implements Sisalto {
   
   /* Tämä metodi renderöi revontulen */
   void renderWave() {
+    
+    revontulenpiirtoMenossa = true;
     
     int testi;
     
