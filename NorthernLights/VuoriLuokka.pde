@@ -9,10 +9,6 @@ class VuoriLuokka implements Sisalto {
   void setup() {
     
     kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
-
-    
-    teeTakavuoret();
-    teeEtuvuoret();
    
       //Lisätään poroja
       int poroja = int(random(7))+1;
@@ -28,9 +24,9 @@ class VuoriLuokka implements Sisalto {
   }
   
   void draw() {
-   /* teeTakavuoret();
+   teeTakavuoret();
     teeEtuvuoret();
-  */}
+  }
   
       /* Lasketaan ja piirretään etuvuoret */
     void teeTakavuoret(){
