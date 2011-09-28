@@ -20,6 +20,14 @@ Artti Kaipainen 2011
   
     void draw() {}
     
+    KuusiLuokka() {
+      ensimmainenKerta = true;
+      kuuset = new ArrayList(); // Artin lisäämä
+      sijainnitX = new ArrayList<Float>();
+      sijainnitY = new ArrayList<Float>();
+      koot = new ArrayList<Float>();
+    }
+    
     void luoKuusi(float sijaintiX, float sijaintiY) {
       
      noStroke();

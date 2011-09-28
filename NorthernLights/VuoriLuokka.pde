@@ -7,27 +7,30 @@ class VuoriLuokka implements Sisalto {
   
   
   void setup() {
+    
+    kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
+
+    
+    teeTakavuoret();
+    teeEtuvuoret();
    
-      kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
-      sisallot.add(kuusiLuokka);
-      kuusiLuokka.ensimmainenKerta = true;
-      kuusiLuokka.kuuset = new ArrayList(); // Artin lisäämä
-      kuusiLuokka.sijainnitX = new ArrayList<Float>();
-      kuusiLuokka.sijainnitY = new ArrayList<Float>();
-      kuusiLuokka.koot = new ArrayList<Float>();
-      
       //Lisätään poroja
       int poroja = int(random(7))+1;
       for(int i = 0; i < poroja; i++) {
         sisallot.add(new Poro(annaYlareunanPisteet(),800));
       }
+    
+      sisallot.add(kuusiLuokka);
+      
+      
+      
       
   }
   
   void draw() {
-    teeTakavuoret();
+   /* teeTakavuoret();
     teeEtuvuoret();
-  }
+  */}
   
       /* Lasketaan ja piirretään etuvuoret */
     void teeTakavuoret(){
