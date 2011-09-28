@@ -14,15 +14,20 @@ public class Poro implements Sisalto {
   boolean petteri = false;
   int peiliY = 1;
   boolean kasvatus = false;
+  float[] ylarajat;
   
 Poro(int ylaraja, int leveys) {
   if(random(10) < 1) {
     petteri = true;
   }
   
-  
-  y = annaY(ylaraja);
   x = int(random(leveys));
+  if(ylarajat != null) {
+    y = annaY(int(ylarajat[x]));
+  }
+  else {
+    y = annaY(ylaraja);
+  }
 }
 
 void setup() {
@@ -73,7 +78,9 @@ void ruumis() {
   ellipseMode(CORNER);
   ellipse(0,0,peiliY*18,8);
   //hanta
-  ellipse(17,1,2,2);
+  fill(100);
+  ellipse(16,0,4,4);
+  fill(200);
 }
 
 void paa() {
@@ -114,6 +121,12 @@ void paa() {
 void kasvataSarvet() {
   petteri = true;
   
+}
+
+void asetaYlarajat(float[] rajat) {
+  if(ylarajat == null) {
+    ylarajat = rajat;
+  }
 }
 
 }
