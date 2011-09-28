@@ -92,9 +92,10 @@ class Revontulet implements Sisalto {
   
   void draw() {
     
-    if(pmouseY > 350 && mouseClicked()) {
-        return;
+    if(pmouseY > 350 && mousePressed) {
+        aloitaUusi = false;
       }
+      
       
     
     
@@ -205,7 +206,7 @@ class Revontulet implements Sisalto {
     }
     
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = testi; x < revontulenleveys ; x++) {
+    for (int x = testi; x < yvalues.length ; x++) {
   
       
       int luku = x % vaakaGradient;
