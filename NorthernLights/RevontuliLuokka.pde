@@ -114,6 +114,8 @@ class Revontulet implements Sisalto {
     /* Painetaan hiirtä ja aloitetaan uusi revontuli */
     if (aloitaUusi == true && mousePressed) {
       
+      revontulenpiirtoMenossa = true;
+      
       arpa = random(0.3,5.4);
 
       setup();
@@ -124,6 +126,7 @@ class Revontulet implements Sisalto {
     
     /* Painetaan hiirtä, otetaan talteen revontulen pisteitä */
     if (mousePressed && pmouseX-aloitusX >= 0 && mouseX < ikkunanleveys) {
+      
       asetaPiste(pmouseX-aloitusX, mouseX-aloitusX, pmouseY-yKorjaus, mouseY-yKorjaus);
       aloitaUusi = false;
       revontulenleveys = mouseX-aloitusX;
@@ -191,9 +194,7 @@ class Revontulet implements Sisalto {
   
   /* Tämä metodi renderöi revontulen */
   void renderWave() {
-    
-    revontulenpiirtoMenossa = true;
-    
+        
     int testi;
     
     if((millis() - revontuliaika)/1000 < 5) {
