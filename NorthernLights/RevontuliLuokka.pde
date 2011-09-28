@@ -101,7 +101,7 @@ class Revontulet implements Sisalto {
     }
     
     /* Painetaan hiirtä ja aloitetaan uusi revontuli */
-    if (aloitaUusi == true && mousePressed) {
+    if (aloitaUusi == true && mousePressed && mouseY < 350) {
       arpa = random(0.3,5.4);
 
       setup();
