@@ -1,3 +1,10 @@
+/**
+
+KuusiLuokka - osa NorthernLights -harkkaa.
+
+Artti Kaipainen 2011
+
+*/
   public class KuusiLuokka implements Sisalto {
   
   ArrayList kuuset;
@@ -6,8 +13,8 @@
   ArrayList sijainnitY;
   ArrayList koot;
   boolean ensimmainenKerta;
-  color kantojenVari = color(92,36,6);
-  color latvojenVari = color(23,84,25);
+  color kantojenVari = color(92,36,6); // Asetetaan kuusien kannoille ruskea väri
+  color latvojenVari = color(23,84,25); // Latvoille puolestaan vihreä
   
     void setup() {}
   
@@ -48,16 +55,7 @@
      sijainnitX.add(sijaintiX);
      sijainnitY.add(sijaintiY);
      koot.add(koko);   
-     
-  /* 
-     float tehdaankoKolmas = random(0,100);
-   
-     if(tehdaankoKolmas <= 50) {
-       fill(0,180,0);
-       triangle(sijaintiX-(koko*0.3),sijaintiY-(koko*1.6),sijaintiX+(koko*1.3),sijaintiY-(koko*1.6),sijaintiX+(koko/2),sijaintiY-(koko*(2.6)));
-       
-     } */
-   
+
     }
     
     void luoKuusikko() {
