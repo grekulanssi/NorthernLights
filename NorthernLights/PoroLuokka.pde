@@ -1,8 +1,6 @@
 /*
 Porot tehny Anssi. Kumma ko alle 3px halkaisijan ellipse ei enää piirry mihinkään :(
 */
-import java.awt.event.*;
-
 
 public class Poro implements Sisalto {
   
@@ -14,7 +12,7 @@ public class Poro implements Sisalto {
   int peiliY = 1;
   boolean kasvatus = false;
   float[] ylarajat;
-  float klikkaushetki;
+  float klikkaushetki = 0;
   
 Poro(float[] ylarajataulukko, int leveys) {
   if(random(10) < 0.5) {
@@ -24,16 +22,18 @@ Poro(float[] ylarajataulukko, int leveys) {
   ylarajat = ylarajataulukko;
   
   x = int(random(leveys));
-  if(ylarajat != null) {
-    println("jepajepajepa");
-    y = annaY(int(ylarajat[x]));
-  }
-  else {
+  if(ylarajat == null) {
+    println("ylarajat on null");
     y = int(random(400,434));
   }
 }
 
 void setup() {
+  if(ylarajat != null) {
+    println("jepajepajepa");
+    y = annaY(int(ylarajat[x]));
+  }
+  
 }
 
 void draw() {
@@ -45,6 +45,7 @@ int annaY(int maksimi) {
 }
 
 void piirraPoro() {
+  
   pushMatrix();
   translate(x,y);
   stroke(100);
@@ -60,9 +61,12 @@ void piirraPoro() {
   }
   
   popMatrix();
-  if(!kasvatus && mousePressed && abs(pmouseX-x) < 10 && abs(mouseY-y) < 5) {
-    kasvatus = true;
-    klikkaushetki = millis();
+  
+  if(!revontulenpiirtoMenossa) {
+    if(!kasvatus && mousePressed && abs(pmouseX-x) < 10 && abs(mouseY-y) < 5) {
+      kasvatus = true;
+      klikkaushetki = millis();
+    }
   }
 }
 
@@ -89,6 +93,10 @@ void paa() {
   //sarvet
   line(0,0,-5,-5);
   line(0,0,+6,-6);
+  
+  if(kasvatus) {
+    kasvata();
+  }
   
   //paa
   pushMatrix();
@@ -120,9 +128,28 @@ void paa() {
   return;
 }
 
+void asetaYlarajataulukko(float[] rajat) {
+  ylarajat = rajat;
+}
+
 void kasvataSarvet() {
   petteri = true;
   
+}
+
+/*Sarvien kasvatusmetodi jota kutsutaan joka draw:lla
+Miten saan sen kutsumaan tätä vain esim. 4 kertaa sekunnissa?*/
+void kasvata() {
+  int aikaaKulunut = int(millis() - klikkaushetki);
+    println("Aikaa kulunu: " + aikaaKulunut);
+    for(int piirto = 0; piirto < aikaaKulunut; piirto++) {
+      line(0,0,-piirto/100,-piirto/100);
+      line(0,0,piirto/100+2,-piirto/100);
+      if(aikaaKulunut > 1000) {
+        println("meni");
+        line(-5,-5,-piirto/80,-piirto/80);
+      }
+    }
 }
 
 }

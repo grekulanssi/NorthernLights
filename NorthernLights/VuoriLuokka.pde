@@ -4,23 +4,25 @@ class VuoriLuokka implements Sisalto {
   ArrayList<Float> takavuorenPisteet = new ArrayList<Float>(); //taaimmaisen vuoren y-koordinaatit
   ArrayList<Float> etuvuorenPisteet = new ArrayList<Float>(); //etummaisen vuoren y-koordinaatit
   private float[] ylareunanPisteet;
-  
+  ArrayList<Poro> porot = new ArrayList<Poro>();
   
   void setup() {
     
     kuusiLuokka = new KuusiLuokka(); // Artin lisäämä
-   
-      //Lisätään poroja
-      int poroja = int(random(7))+1;
-      for(int i = 0; i < poroja; i++) {
-        sisallot.add(new Poro(annaYlareunanPisteet(),800));
-      }
+    sisallot.add(kuusiLuokka);
     
-      sisallot.add(kuusiLuokka);
-      
-      
-      
-      
+    
+
+    //Lisätään poroja
+    int poroja = int(random(7))+1;
+    for(int i = 0; i < poroja; i++) {
+      Poro p = new Poro(annaYlareunanPisteet(),800);
+      sisallot.add(p);
+      porot.add(p);
+    }  
+    
+    laskeEtuvuoret();
+    
   }
   
   void draw() {
@@ -60,6 +62,23 @@ class VuoriLuokka implements Sisalto {
     /* Lasketaan ja piirretään takavuoret */
     void teeEtuvuoret(){
       //Lasketaan etuvuoret
+      //laskeEtuvuoret();
+      
+      //Piirretään etuvuoret
+      stroke(255);
+      for (int i=0; i<etuvuorenPisteet.size(); i++) {
+        line(i, etuvuorenPisteet.get(i), i, 450); 
+      }
+      
+      if(kuusiLuokka.ensimmainenKerta) {    
+       kuusiLuokka.luoKuusikko();
+      } else {
+        kuusiLuokka.piirraSamatKuuset();
+      }
+     
+    }
+    
+    void laskeEtuvuoret() {
       if (etuvuorenPisteet.size() == 0) {
         float[] ylareunanPisteet = new float[800]; // Artin lisäämä, Anssi vaihto nimen    
         float kulma3 = 0;
@@ -83,21 +102,12 @@ class VuoriLuokka implements Sisalto {
             ylareunanPisteet[j] = (py2+py3)/2;
             kuusiLuokka.lisaaListaan(ylareunanPisteet[j]);
           }
+          for(int k = 0; k < porot.size(); k++) {
+            porot.get(k).asetaYlarajataulukko(ylareunanPisteet);
+          }
             
         }
       }
-      //Piirretään etuvuoret
-      stroke(255);
-      for (int i=0; i<etuvuorenPisteet.size(); i++) {
-        line(i, etuvuorenPisteet.get(i), i, 450); 
-      }
-      
-      if(kuusiLuokka.ensimmainenKerta) {    
-       kuusiLuokka.luoKuusikko();
-      } else {
-        kuusiLuokka.piirraSamatKuuset();
-      }
-     
     }
   
   public float[] annaYlareunanPisteet() {
