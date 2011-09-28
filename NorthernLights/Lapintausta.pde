@@ -10,6 +10,9 @@
     //Tomi tästä eteenpäin
     float kuunX = 0, kuunY = 0; //Kuun sijaintikoordinaatit
     
+    //Anssi: kuun sädekehä
+    int sadekeha = 0;
+    
     void setup(){
       
       background(3,3,30);
@@ -30,10 +33,19 @@
       //Ensimmäisellä kerralla määritetään kuun sijainti
       if(kuunX == 0) {      
         kuunX  = random(50,750);
-        kuunY = random(50,300);      
+        kuunY = random(50,300);
+        //lisäksi määrätään sädekehän leveys
+        sadekeha = int(random(5,20));      
       }
       //Piirretään kuu
       ellipseMode(CENTER);
+      //Sädekehän piirto:
+      for(int k = 0; k < sadekeha; k++) {
+       fill(190,175,120,k);
+       noStroke();
+       ellipse(kuunX,kuunY, 50+k,50+k);
+      } 
+      //Itse kuumöllykän piirto
       fill(190,175,120);
       //fill(255,236,139);
       noStroke();

@@ -15,7 +15,6 @@ class VuoriLuokka implements Sisalto {
   }
   
   void draw() {
-    
     teeTakavuoret();
     teeEtuvuoret();
   }
