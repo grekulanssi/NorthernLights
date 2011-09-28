@@ -191,8 +191,8 @@ class Revontulet implements Sisalto {
 
     noStroke();   
     int feidiSivusta = 200;
-    if (revontulenleveys < 400) {
-      feidiSivusta = revontulenleveys/2;
+    if (revontulenleveys-testi < 400) {
+      feidiSivusta = (revontulenleveys-testi)/2;
     }
     
     //Piirretään liukuväripystypalkkeja vierekkäin
@@ -227,12 +227,16 @@ class Revontulet implements Sisalto {
         float valmius = (float)tempx/(feidiSivusta);
         //println(valmius);
         tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
-
+        //tulenvari = color(0, 255, 0);
+        
       }
       
       else if (x >= revontulenleveys-feidiSivusta) {
+        
+        tempx = x-testi;
         float valmius = 1-((float)(x-revontulenleveys+feidiSivusta))/feidiSivusta;
         //println(valmius);
+        //tulenvari = color(255, 0, 0);
         tulenvari = color(red(tulenvari), green(tulenvari), blue(tulenvari), (int)(valmius*255)); //tulenvarireuna vaihtelee
       }
       
