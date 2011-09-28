@@ -13,16 +13,9 @@ void setup() {
   
   //Lisätään sisällöt
   sisallot.add(new Lapintausta());  
-  sisallot.add(new KuusiLuokka());  
+  //sisallot.add(new KuusiLuokka());  
   sisallot.add(new Revontulet());
   sisallot.add((vuoristo = new VuoriLuokka()));
-  
-  
-  //Lisätään poroja
-  int poroja = int(random(5))+1;
-  for(int i = 0; i < poroja; i++) {
-    sisallot.add(new Poro(vuoristo.annaYlareunanPisteet(),800));
-  }
   
   //Suoritetaan sisältöjen setupit
   for (int i=0; i<sisallot.size(); i++) {
