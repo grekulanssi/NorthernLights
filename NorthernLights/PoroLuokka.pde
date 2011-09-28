@@ -2,7 +2,7 @@
 //background colorin mukaan sijainnin asettaminen.
 
 */
-
+import java.awt.event.*;
 
 
 public class Poro implements Sisalto {
@@ -10,10 +10,11 @@ public class Poro implements Sisalto {
   final int RUUDUN_KORKEUS = 450;
   
   int x;
-  int y;
+  int y; 
   boolean petteri = false;
   int peiliY = 1;
-
+  boolean kasvatus = false;
+  
 Poro(int ylaraja, int leveys) {
   if(random(10) < 1) {
     petteri = true;
@@ -22,78 +23,97 @@ Poro(int ylaraja, int leveys) {
   
   y = annaY(ylaraja);
   x = int(random(leveys));
-  //piirraPoro();
 }
 
 void setup() {
 }
 
 void draw() {
-  float rand = random(2);
-  if(rand < 1) {
-    peiliY = -1;
-  }
   piirraPoro();
 }  
 
 int annaY(int maksimi) {
-  return int(random(maksimi, RUUDUN_KORKEUS));
+  return int(random(maksimi, RUUDUN_KORKEUS-16));
 }
 
 void piirraPoro() {
+  pushMatrix();
+  translate(x,y);
   stroke(100);
-  strokeWeight(2);
   fill(200);
+  strokeWeight(1);
+  
   jalat();
   ruumis();
   paa();
+  
+  if(kasvatus) {
+    float t = millis() / 1000.0;
+    rotate(t);
+    kasvataSarvet();
+  }
+  
+  if(!kasvatus && mousePressed && abs(pmouseX) < x+10 && abs(mouseY) < y+5) {
+    kasvatus = true;
+  }
+  
+  popMatrix();
 }
 
+void jalat() {
+  line(2,5,2,15);
+  line(4,5,4,15);
+  line(15,5,15,15);
+  line(17,5,17,15);
+  return;
+}
+
+
 void ruumis() {
-  strokeWeight(1);
   ellipseMode(CORNER);
-  ellipse(x,y,peiliY*20,10);
+  ellipse(0,0,peiliY*18,8);
+  //hanta
+  ellipse(17,1,2,2);
 }
 
 void paa() {
-  strokeWeight(2);
   
   //sarvet
-  line(x,y,x-5,y-5);
-  line(x,y,x+5,y-5);
+  line(0,0,-5,-5);
+  line(0,0,+6,-6);
   
   //paa
-  strokeWeight(1);
-  ellipseMode(CENTER);
-  ellipse(x,y,10,5);
+  pushMatrix();
+    rotate(-PI/6);
+    strokeWeight(1);
+    ellipseMode(CENTER);
+    ellipse(0,0,10,5);
+  popMatrix();
   
   strokeWeight(1);
   //nena
   if(petteri) {
     fill(220,20,20);
+    stroke(220,20,20);
+    ellipse(-5,0,3,3);
   }
   else {
-    stroke(112,70,26);
-    fill(112,70,26);
+    stroke(100,70,26);
+    fill(100,70,26);
+    ellipse(-5,0,2,2);
   }
-  ellipse(x-5,y,2,2);
   
   //silma
   stroke(100);
   fill(0);
-  ellipse(x,y-1,2,2);
+  ellipse(1,-1,1,1);
   
   return;
 }
 
-void jalat() {
-  strokeWeight(2);
-  line(x+2,y+5,x,y+15);
-  line(x+2,y+5,x+4,y+15);
-  line(x+20,y+5,x+18,y+15);
-  line(x+20,y+5,x+22,y+15);
-  return;
+void kasvataSarvet() {
+  petteri = true;
+  
 }
-
 
 }

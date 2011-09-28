@@ -30,6 +30,9 @@ class Revontulet implements Sisalto {
   float[] yvalues;          // Using an array to store height values for the wave (not entirely necessary)
   float[] ymouses;
   
+  //varijuttuja
+  float arpa = random(0,3.4);
+  color tulenvari;
   
   /* Tämä metodi asettaa muistiin klikatut pisteet */
   void asetaPiste(int x1, int x2, int y1, int y2) {    
@@ -58,6 +61,7 @@ class Revontulet implements Sisalto {
     vinouskerroin = random(-0.2, 0.2);    
     xspacing = (int)random(2,4.8);
     aloitaUusi = true;
+    
     
     for (int i = 0; i < maxwaves; i++) {
       amplitude[i] = random(3,10);
@@ -166,6 +170,7 @@ class Revontulet implements Sisalto {
   
   /* Tämä metodi renderöi revontulen */
   void renderWave() {
+
     //Piirretään liukuväripystypalkkeja vierekkäin
     for (int x = 0; x < yvalues.length ; x++) {
   
@@ -173,11 +178,27 @@ class Revontulet implements Sisalto {
       int luku = x % vaakaGradient;
       int ero = Math.abs(vaakaGradient/2-luku);
       int feidiSivusta = 200;
-      
+     if(int(arpa) == 0){
+       tulenvari = color(0, 181+(ero), 0, 255);
+       //println(0);
+     } 
+     if(int(arpa) == 1){
+       tulenvari = color(181+(ero), 0, 0, 255);
+       //println(1);
+     } 
+     if(int(arpa) == 2){
+       tulenvari = color(181+(ero),255,0,255);
+       //println(2);
+     } 
+     if(int(arpa) == 3){
+       tulenvari = color(181+(ero),0,106,255);
+       //println(3);
+     }
       //color tulenvari = color(0, 181+(ero), 0, 255); //tulenvarireuna vaihtelee
-      color tulenvari = color(181+(ero), 0, 0, 255); //tulenvarireuna vaihtelee
+      //color tulenvari = color(181+(ero), 0, 0, 255); //tulenvarireuna vaihtelee
       //color tulenvari = color(0, 0, 181+(ero), 255); //tulenvarireuna vaihtelee
-
+      //color tulenvari = color(181+(ero),255,0,255);
+      //color tulenvari = color(181+(ero),0,106,255);
       
       /* Revontulen reunat feidaa */
       if (x <= feidiSivusta) {
