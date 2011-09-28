@@ -1,6 +1,7 @@
 
 //Lista joka sisältää sisältöelementit
 ArrayList<Sisalto> sisallot = new ArrayList<Sisalto>();
+boolean revontulenpiirtoMenossa = false;
 
 void setup() {
   
@@ -15,7 +16,7 @@ void setup() {
   sisallot.add(new Lapintausta());  
   //sisallot.add(new KuusiLuokka());  
   sisallot.add(new Revontulet());
-  sisallot.add((vuoristo = new VuoriLuokka()));
+  sisallot.add(new VuoriLuokka());
   
   //Suoritetaan sisältöjen setupit
   for (int i=0; i<sisallot.size(); i++) {
@@ -26,6 +27,7 @@ void setup() {
 //Suoritetaan sisältöjen draw()-metodit
 void draw() {  
   for (int i=0; i<sisallot.size(); i++) {
+    //jostain syystä piirtää kuuset ennen poroja vaikka porot lisätään sisältöihin ennen kuusia. (vuoriluokassa)
      sisallot.get(i).draw(); 
   }
   
