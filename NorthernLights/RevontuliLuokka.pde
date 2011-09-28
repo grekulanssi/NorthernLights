@@ -92,6 +92,8 @@ class Revontulet implements Sisalto {
   
   void draw() {
     
+    /* jos hiirtä painetaan alhaalla porojen luona, 
+    niin näkyvä revontuli ei nollaannu EI TOIMI OIKEIN VIELÄ*/
     if(pmouseY > 350 && mousePressed) {
         aloitaUusi = false;
       }
