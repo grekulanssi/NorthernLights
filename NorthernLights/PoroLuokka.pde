@@ -30,7 +30,7 @@ Poro(float[] ylarajataulukko, int leveys) {
 
 void setup() {
   if(ylarajat != null) {
-    println("jepajepajepa");
+    //println("jepajepajepa");
     y = annaY(int(ylarajat[x]));
   }
   
