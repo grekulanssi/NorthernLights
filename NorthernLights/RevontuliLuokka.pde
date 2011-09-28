@@ -144,7 +144,7 @@ class Revontulet implements Sisalto {
         color c = color(
         (red(c2)),
         (green(c2)),
-        (blue(c1)), alfa);
+        (blue(c2)), alfa);
         
        stroke(c);
        point(i,j);
@@ -196,7 +196,7 @@ class Revontulet implements Sisalto {
     }
     
     //Piirretään liukuväripystypalkkeja vierekkäin
-    for (int x = testi; x < yvalues.length ; x++) {
+    for (int x = testi; x < revontulenleveys ; x++) {
   
       
       int luku = x % vaakaGradient;
